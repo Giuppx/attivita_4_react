@@ -35,8 +35,25 @@ function App() {
 	}
 
 	useEffect(() => {
+		// recupero prodotti
 		getProducts();
+
+		// inizializzo la wishlist nel local storage se non presente
+		if (!window.localStorage.getItem("wishlist")) {
+			localStorage.setItem("wishlist", JSON.stringify([]));
+		}
 	}, []);
+
+	// wishlist
+	function addToWishlist(product) {
+		// leggo l' array nel local storage
+		const currentWishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
+
+		currentWishlist.push(product);
+
+		// salvo la nuova lista
+		localStorage.setItem("wishlist", JSON.stringify(currentWishlist));
+	}
 
 	return (
 		<BrowserRouter>
@@ -44,7 +61,16 @@ function App() {
 			<Routes>
 				<Route path="/" element={<Home />} />
 				<Route path="about" element={<About />} />
-				<Route path="products" element={<Products products={products} />} />
+				<Route
+					path="products"
+					element={
+						<Products
+							products={products}
+							addToWishlist={addToWishlist}
+							isLoggedIn={isLoggedIn}
+						/>
+					}
+				/>
 				<Route
 					path="/wishlist"
 					element={

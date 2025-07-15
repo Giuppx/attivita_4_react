@@ -1,5 +1,5 @@
 import ProductList from "./productsList/ProductList";
-function Products({ products }) {
+function Products({ products, addToWishlist, isLoggedIn }) {
 	return (
 		<>
 			<div className="container-fluid mt-3">
@@ -8,7 +8,11 @@ function Products({ products }) {
 				<div className="row">
 					<div className="col-md-12">
 						{products.length > 0 ? (
-							<ProductList products={products} />
+							<ProductList
+								products={products}
+								addToWishlist={addToWishlist}
+								isLoggedIn={isLoggedIn}
+							/>
 						) : (
 							<p>non ci sono prodotti da mostrare</p>
 						)}

@@ -1,4 +1,15 @@
-function Product({ product, key }) {
+import { useNavigate } from "react-router-dom";
+
+function Product({ product, addToWishlist, isLoggedIn }) {
+	const navigate = useNavigate();
+
+	function handleAddToWishlist() {
+		if (!isLoggedIn) {
+			navigate("/login");
+		} else {
+			addToWishlist(product);
+		}
+	}
 	return (
 		<>
 			<div className="card mb-3 h-auto" style={{ maxWidth: "540px" }}>
@@ -22,7 +33,9 @@ function Product({ product, key }) {
 					</div>
 				</div>
 				<div className="d-flex justify-content-center align-items-end my-2">
-					<button className="btn btn-primary">Save on wishlist</button>
+					<button className="btn btn-primary" onClick={handleAddToWishlist}>
+						Save on wishlist
+					</button>
 				</div>
 			</div>
 		</>
