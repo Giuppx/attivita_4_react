@@ -1,5 +1,5 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import "./App.css";
 
@@ -23,13 +23,27 @@ function App() {
 		setisLoggedIn(false);
 	}
 
+	// prodotti
+	const [products, setProducts] = useState([]);
+
+	function getProducts() {
+		fetch("https://fakestoreapi.com/products")
+			.then((resp) => resp.json())
+			.then((products) => setProducts([...products]))
+			.catch((err) => console.log(err.message));
+	}
+
+	useEffect(() => {
+		getProducts();
+	}, []);
+
 	return (
 		<BrowserRouter>
 			<Navabar />
 			<Routes>
 				<Route path="/" element={<Home />} />
 				<Route path="about" element={<About />} />
-				<Route path="products" element={<Products />} />
+				<Route path="products" element={<Products products={products} />} />
 				<Route path="wish-list" element={<WishList />} />
 				<Route
 					path="Login"
