@@ -60,9 +60,9 @@ function App() {
 			<Navabar />
 			<Routes>
 				<Route path="/" element={<Home />} />
-				<Route path="about" element={<About />} />
+				<Route path="/about" element={<About />} />
 				<Route
-					path="products"
+					path="/products"
 					element={
 						<Products
 							products={products}
@@ -80,7 +80,7 @@ function App() {
 					}
 				/>
 				<Route
-					path="Login"
+					path="/Login"
 					element={
 						<Login login={login} logout={logout} loginStatus={isLoggedIn} />
 					}
