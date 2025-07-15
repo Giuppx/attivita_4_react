@@ -35,7 +35,7 @@ function Navbar() {
 							</Link>
 						</li>
 						<li className="nav-item">
-							<Link to="wish-list" className="nav-link">
+							<Link to="wishlist" className="nav-link">
 								Wish list
 							</Link>
 						</li>
