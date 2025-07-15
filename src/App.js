@@ -10,6 +10,7 @@ import Products from "./components/products/Products";
 import WishList from "./components/wishlist/wishList";
 import Login from "./components/login/Login";
 import Error from "./error/Error";
+import PrivateRouter from "./components/wishlist/PrivateRouter";
 
 function App() {
 	// login
@@ -44,7 +45,14 @@ function App() {
 				<Route path="/" element={<Home />} />
 				<Route path="about" element={<About />} />
 				<Route path="products" element={<Products products={products} />} />
-				<Route path="wish-list" element={<WishList />} />
+				<Route
+					path="/wishlist"
+					element={
+						<PrivateRouter isLoggedIn={isLoggedIn}>
+							<WishList />
+						</PrivateRouter>
+					}
+				/>
 				<Route
 					path="Login"
 					element={
